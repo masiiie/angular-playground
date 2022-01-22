@@ -8,13 +8,14 @@ import { Component, OnInit } from '@angular/core';
 export class CalendarComponent implements OnInit {
 
   public year:number;
+  current : Date;
   month:number;
   normalView: boolean;
 
   constructor() { 
-    let current = new Date();
-    this.year = current.getFullYear();
-    this.month = current.getMonth();
+    this.current = new Date();
+    this.year = this.current.getFullYear();
+    this.month = this.current.getMonth();
     this.normalView = true;
   }
 

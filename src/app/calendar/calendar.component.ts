@@ -8,12 +8,25 @@ import { Component, OnInit } from '@angular/core';
 export class CalendarComponent implements OnInit {
 
   constructor() { }
-  daysMonth = 30;
+  year = 2022;
+  month = 1;
+
+  public yearMonth = new Date(this.year,this.month);  
 
   ngOnInit(): void {
   }
+
+  public daysInMonth() : number {
+    return new Date(this.year, this.month, 0).getDate();
+  }
+
+  range(i: number) {
+    return new Array(i);
+  }
+
+  public numberOfWeeks() : number{
+    let inMonth = this.daysInMonth();
+    return inMonth%7>0 ? Math.floor(inMonth/7) + 1 : Math.floor(inMonth/7); 
+  }
 }
 
-function daysInMonth (month:number, year:number) {
-  return new Date(year, month, 0).getDate();
-}

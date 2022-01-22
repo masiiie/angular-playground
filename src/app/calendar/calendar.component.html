@@ -1,4 +1,4 @@
-<table>
+<table style="text-align: end;">
   <!--   <tr>{{ yearMonth | date:'MMMM, y' }}</tr> -->
     <tr>
       <th>S</th>
@@ -11,7 +11,7 @@
     </tr>
     <tr *ngFor="let in of range(numberOfWeeks()); let i = index">
       <td *ngFor="let j of [1,2,3,4,5,6,7]">
-        <span *ngIf="(i*7 + j) <= daysInMonth()">{{i*7 + j}}</span>
+        <span class="day" *ngIf="(i*7 + j) <= daysInMonth()">{{i*7 + j}}</span>
       </td>
     </tr>
   </table>

@@ -1,3 +1,12 @@
 .day:hover{
     background-color: antiquewhite;
 }
+
+.calendar caption h5{
+    display: inline;
+    padding: 5px;
+}
+
+.calendar th, .calendar td {
+    padding: 10px;
+  }

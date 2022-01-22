@@ -1,17 +1,21 @@
-<table style="text-align: end;">
-  <!--   <tr>{{ yearMonth | date:'MMMM, y' }}</tr> -->
-    <tr>
-      <th>S</th>
-      <th>M</th>
-      <th>T</th>
-      <th>W</th>
-      <th>T</th>
-      <th>F</th>
-      <th>S</th>
-    </tr>
-    <tr *ngFor="let in of range(numberOfWeeks()); let i = index">
-      <td *ngFor="let j of [1,2,3,4,5,6,7]">
-        <span class="day" *ngIf="(i*7 + j) <= daysInMonth()">{{i*7 + j}}</span>
-      </td>
-    </tr>
-  </table>
+<table class="calendar" style="text-align: end; padding:5px">
+  <caption style="text-align: center; padding:5px">
+    <h5 class="prev"><</h5>
+    <h5>{{ yearMonth | date:'MMMM, y' }}</h5>
+    <h5 class="next">></h5>
+  </caption> 
+  <tr>
+    <th>S</th>
+    <th>M</th>
+    <th>T</th>
+    <th>W</th>
+    <th>T</th>
+    <th>F</th>
+    <th>S</th>
+  </tr>
+  <tr *ngFor="let in of range(numberOfWeeks()); let i = index">
+    <td *ngFor="let j of [1,2,3,4,5,6,7]">
+      <span class="day" *ngIf="(i*7 + j) <= daysInMonth()">{{i*7 + j}}</span>
+    </td>
+  </tr>
+</table>

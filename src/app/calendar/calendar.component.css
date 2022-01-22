@@ -1,22 +1,49 @@
+table.calendar{
+    box-shadow: 2px 2px 4px #000000;
+}
+
 .day:hover{
     background-color: rgb(240, 215, 250);
     border-radius: 90%;
     cursor: pointer;
 }
 
+.calendar caption{
+    margin-bottom: 10%; 
+    padding-bottom: 10%;
+}
+
 table.calendar{
     position: relative;
 }
 
-.controls{
+.calendar .controls{
     position: absolute;
     right: 5px;
 }
 
-.yearMonth{
+.controls button{
+    background-color: #a34caf !important; 
+    color: white;
+    text-align: center;
+    border-radius: 90%;
+}
+
+.calendar caption button, .calendar .selectYear button {
+    border: none;
+    padding: 5px;
+    text-decoration: none;
+    display: inline-block; 
+    margin: 4px 2px;
+    cursor: pointer;
     font-weight: bolder;
     font-size: small;
+    background-color: transparent;
+  }
 
+
+.yearMonth{
+    vertical-align: middle;
     position: absolute;
     left: 5px;
 }
@@ -33,18 +60,3 @@ table.calendar{
 .calendar th, .calendar td {
     padding: 10px;
 }
-
-.calendar button {
-    background-color: #a34caf; /* Green */
-    border: none;
-    color: white;
-    padding: 5px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 10px;
-    font-weight: bolder;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 90%;
-  }

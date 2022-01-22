@@ -8,16 +8,25 @@ import { Component, OnInit } from '@angular/core';
 export class CalendarComponent implements OnInit {
 
   constructor() { }
-  year = 2022;
   month = 1;
-
-  public yearMonth = new Date(this.year,this.month);
+  normalView = true;
+  
+  public year = 2022;
 
   ngOnInit(): void {
   }
 
-  range(i: number) {
-    return new Array(i);
+  range(i: number, start = 0) {
+    return [...Array(i).keys()].map(i => i + start);
+  }
+
+  public selectYear(yearS:number){
+    this.year = yearS;
+    this.normalView = true;
+  }
+
+  public changeYear(){
+    this.normalView = this.normalView ? false : true;
   }
 
   // Mal: febrero lo esta dando con 31 dias
@@ -25,21 +34,24 @@ export class CalendarComponent implements OnInit {
     return new Date(this.year, this.month, 0).getDate();
   }
 
-  public numberOfWeeks() : number{
-    let inMonth = this.daysInMonth();
-    return inMonth%7>0 ? Math.floor(inMonth/7) + 1 : Math.floor(inMonth/7); 
-  }
-
   public prevMonth() {
-    this.month = this.month - 1 == 0 ? 12 : this.month-1;
-    this.year = this.month == 12 ? this.year - 1 : this.year; 
-    this.yearMonth = new Date(this.year,this.month);
+    if(this.normalView){
+      this.month = this.month - 1 == 0 ? 12 : this.month-1;
+      this.year = this.month == 12 ? this.year - 1 : this.year; 
+    }
+    else this.year -= 16;
   }
 
   public nextMonth() {
-    this.month = this.month + 1 == 13 ? 1 : this.month+1;
-    this.year = this.month == 1 ? this.year + 1 : this.year; 
-    this.yearMonth = new Date(this.year,this.month);
+    if(this.normalView){
+      this.month = this.month + 1 == 13 ? 1 : this.month+1;
+      this.year = this.month == 1 ? this.year + 1 : this.year; 
+    }
+    else this.year += 16;
+  }
+
+  public yearMonth() : Date{
+    return new Date(this.year,this.month);
   }
 }
 

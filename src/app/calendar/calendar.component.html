@@ -1,23 +1,32 @@
 <table class="calendar" style="text-align: end;">
-  <caption style="padding:10px">
-    <span class="yearMonth">{{ yearMonth | date:'MMMM, y' }}</span>
+  <caption>
+    <button (click)="changeYear()" class="yearMonth">{{ yearMonth() | date:'MMM, y' }}</button>
       <div class="controls">
         <button (click)="prevMonth()"> ❮ </button>
         <button (click)="nextMonth()"> ❯ </button>
       </div>
   </caption> 
-  <tr>
-    <th>S</th>
-    <th>M</th>
-    <th>T</th>
-    <th>W</th>
-    <th>T</th>
-    <th>F</th>
-    <th>S</th>
-  </tr>
-  <tr *ngFor="let in of range(numberOfWeeks()); let i = index">
-    <td *ngFor="let j of [1,2,3,4,5,6,7]">
-      <span class="day" *ngIf="(i*7 + j) <= daysInMonth()">{{i*7 + j}}</span>
-    </td>
-  </tr>
+  <tbody class="selectYear" *ngIf="!normalView">
+    <tr *ngFor="let i of [0,1,2,3]">
+      <td *ngFor="let j of [0,1,2,3]">
+        <button (click)="selectYear(year + 4*i + j)">{{year + 4*i + j}}</button>
+      </td>
+    </tr>
+  </tbody>
+  <tbody *ngIf="normalView">
+    <tr>
+      <th>S</th>
+      <th>M</th>
+      <th>T</th>
+      <th>W</th>
+      <th>T</th>
+      <th>F</th>
+      <th>S</th>
+    </tr>
+    <tr *ngFor="let i of [0,1,2,3,4]">
+      <td *ngFor="let j of [1,2,3,4,5,6,7]">
+        <span class="day" *ngIf="(i*7 + j) <= daysInMonth()">{{i*7 + j}}</span>
+      </td>
+    </tr>
+  </tbody>
 </table>

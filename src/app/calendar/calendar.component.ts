@@ -7,11 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CalendarComponent implements OnInit {
 
-  constructor() { }
-  month = 1;
-  normalView = true;
-  
-  public year = 2022;
+  public year:number;
+  month:number;
+  normalView: boolean;
+
+  constructor() { 
+    let current = new Date();
+    this.year = current.getFullYear();
+    this.month = current.getMonth();
+    this.normalView = true;
+  }
 
   ngOnInit(): void {
   }

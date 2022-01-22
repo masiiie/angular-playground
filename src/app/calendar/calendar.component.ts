@@ -12,9 +12,8 @@ export class CalendarComponent implements OnInit {
 
   ngOnInit(): void {
   }
+}
 
-  function daysInMonth (month, year) {
-    return new Date(year, month, 0).getDate();
-  }
-
+function daysInMonth (month:number, year:number) {
+  return new Date(year, month, 0).getDate();
 }

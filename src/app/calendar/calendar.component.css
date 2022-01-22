@@ -1,5 +1,28 @@
 .day:hover{
-    background-color: antiquewhite;
+    background-color: rgb(240, 215, 250);
+    border-radius: 90%;
+    cursor: pointer;
+}
+
+table.calendar{
+    position: relative;
+}
+
+.controls{
+    position: absolute;
+    right: 5px;
+}
+
+.yearMonth{
+    font-weight: bolder;
+    font-size: small;
+
+    position: absolute;
+    left: 5px;
+}
+
+.yearMonth:hover{
+    cursor: pointer;
 }
 
 .calendar caption h5{
@@ -9,4 +32,19 @@
 
 .calendar th, .calendar td {
     padding: 10px;
+}
+
+.calendar button {
+    background-color: #a34caf; /* Green */
+    border: none;
+    color: white;
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 10px;
+    font-weight: bolder;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 90%;
   }

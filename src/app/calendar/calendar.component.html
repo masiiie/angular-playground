@@ -1,8 +1,10 @@
-<table class="calendar" style="text-align: end; padding:5px">
-  <caption style="text-align: center; padding:5px">
-    <h5 class="prev"><</h5>
-    <h5>{{ yearMonth | date:'MMMM, y' }}</h5>
-    <h5 class="next">></h5>
+<table class="calendar" style="text-align: end;">
+  <caption style="padding:10px">
+    <span class="yearMonth">{{ yearMonth | date:'MMMM, y' }}</span>
+      <div class="controls">
+        <button (click)="prevMonth()"> ❮ </button>
+        <button (click)="nextMonth()"> ❯ </button>
+      </div>
   </caption> 
   <tr>
     <th>S</th>

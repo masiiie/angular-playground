@@ -8,10 +8,12 @@ import { Component, OnInit } from '@angular/core';
 export class CalendarComponent implements OnInit {
   current : Date;
   normalView: boolean;
+  yearsRows: number;
 
   constructor() { 
     this.current = new Date();
     this.normalView = true;
+    this.yearsRows = 5;
   }
 
   ngOnInit(): void {
@@ -50,7 +52,7 @@ export class CalendarComponent implements OnInit {
       month = month - 1 == 0 ? 12 : month-1;
       year = month == 12 ? year - 1 : year; 
     }
-    else year-=16;
+    else year-=Math.pow(this.yearsRows, 2);
 
     this.current = new Date(year, month, day);
   }
@@ -64,7 +66,7 @@ export class CalendarComponent implements OnInit {
       month = month + 1 == 13 ? 1 : month+1;
       year = month == 1 ? year + 1 : year; 
     }
-    else year += 16;
+    else year += Math.pow(this.yearsRows, 2);
 
     this.current = new Date(year, month, day);
   }

@@ -8,9 +8,9 @@
   </caption> 
   <caption style="padding-bottom: 0 !important;">{{ current | date:'MMMM, d'}}</caption>
   <tbody class="selectYear" *ngIf="!normalView">
-    <tr *ngFor="let i of [0,1,2,3]">
-      <td *ngFor="let j of [0,1,2,3]">
-        <button (click)="selectYear(current.getFullYear() + 4*i + j)">{{current.getFullYear() + 4*i + j}}</button>
+    <tr *ngFor="let in of range(yearsRows); let i = index">
+      <td *ngFor="let jn of range(yearsRows); let j = index">
+        <button (click)="selectYear(current.getFullYear() + yearsRows*i + j)">{{current.getFullYear() + yearsRows*i + j}}</button>
       </td>
     </tr>
   </tbody>
@@ -24,9 +24,15 @@
       <th>F</th>
       <th>S</th>
     </tr>
-    <tr *ngFor="let i of [0,1,2,3,4]">
+    <tr>
+      <td *ngFor="let in of range(dayOfFirstDate())"></td>
+      <td *ngFor="let in of range(7-dayOfFirstDate()); let i = index">
+        <button class="day" (click)="selectDay(i+1)">{{i+1}}</button>
+      </td>
+    </tr>
+    <tr *ngFor="let i of [1,2,3,4,5]">
       <td *ngFor="let j of [1,2,3,4,5,6,7]">
-        <button (click)="selectDay(i*7 + j)" class="day" *ngIf="(i*7 + j) <= daysInMonth()">{{i*7 + j}}</button>
+        <button (click)="selectDay(7*i+j-dayOfFirstDate())" class="day" *ngIf="(7*i+j-dayOfFirstDate()) <= daysInMonth()">{{7*i+j-dayOfFirstDate()}}</button>
       </td>
     </tr>
   </tbody>

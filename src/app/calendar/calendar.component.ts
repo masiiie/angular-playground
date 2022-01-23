@@ -39,7 +39,7 @@ export class CalendarComponent implements OnInit {
 
   // Mal: febrero lo esta dando con 31 dias
   public daysInMonth() : number {
-    return new Date(this.current.getFullYear(), this.current.getMonth(), 0).getDate();
+    return new Date(this.current.getFullYear(), this.current.getMonth()+1, 0).getDate();
   }
 
   public prevMonth() {
@@ -68,4 +68,9 @@ export class CalendarComponent implements OnInit {
 
     this.current = new Date(year, month, day);
   }
+
+  public dayOfFirstDate(){
+    return new Date(this.current.getFullYear(), this.current.getMonth(), 1).getDay();
+  }
+  //       <td *ngIf="i==0" *ngFor="let in of range(dayOfFirstDate())"></td>
 }

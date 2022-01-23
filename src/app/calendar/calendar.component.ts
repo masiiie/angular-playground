@@ -29,10 +29,15 @@ export class CalendarComponent implements OnInit {
   public selectYear(yearS:number){
     this.year = yearS;
     this.normalView = true;
+    this.current.setFullYear(this.year);
   }
 
   public changeYear(){
     this.normalView = this.normalView ? false : true;
+  }
+
+  public selectDay(day:number){
+    this.current = new Date(day, this.current.getMonth(), this.current.getFullYear());
   }
 
   // Mal: febrero lo esta dando con 31 dias
@@ -46,6 +51,9 @@ export class CalendarComponent implements OnInit {
       this.year = this.month == 12 ? this.year - 1 : this.year; 
     }
     else this.year -= 16;
+
+    this.current.setFullYear(this.year);
+    this.current.setMonth(this.month);
   }
 
   public nextMonth() {
@@ -54,10 +62,8 @@ export class CalendarComponent implements OnInit {
       this.year = this.month == 1 ? this.year + 1 : this.year; 
     }
     else this.year += 16;
-  }
 
-  public yearMonth() : Date{
-    return new Date(this.year,this.month);
+    this.current.setFullYear(this.year);
+    this.current.setMonth(this.month);
   }
 }
-

@@ -10,7 +10,7 @@
   <tbody class="selectYear" *ngIf="!normalView">
     <tr *ngFor="let i of [0,1,2,3]">
       <td *ngFor="let j of [0,1,2,3]">
-        <button (click)="selectYear(year + 4*i + j)">{{year + 4*i + j}}</button>
+        <button (click)="selectYear(current.getFullYear() + 4*i + j)">{{current.getFullYear() + 4*i + j}}</button>
       </td>
     </tr>
   </tbody>

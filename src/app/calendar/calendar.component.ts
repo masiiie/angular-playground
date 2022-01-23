@@ -6,16 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./calendar.component.css']
 })
 export class CalendarComponent implements OnInit {
-
-  public year:number;
   current : Date;
-  month:number;
   normalView: boolean;
 
   constructor() { 
     this.current = new Date();
-    this.year = this.current.getFullYear();
-    this.month = this.current.getMonth();
     this.normalView = true;
   }
 
@@ -26,44 +21,51 @@ export class CalendarComponent implements OnInit {
     return [...Array(i).keys()].map(i => i + start);
   }
 
-  public selectYear(yearS:number){
-    this.year = yearS;
+  public selectYear(year:number){
     this.normalView = true;
-    this.current.setFullYear(this.year);
+    this.current = new Date(year, this.current.getMonth(), this.current.getDate());
   }
 
   public changeYear(){
     this.normalView = this.normalView ? false : true;
   }
 
+  // No funciona
   public selectDay(day:number){
-    this.current = new Date(day, this.current.getMonth(), this.current.getFullYear());
+    // ponerle la clase de selected a esta nueva fecha y quitarsela a la antigua
+    
+    this.current = new Date(this.current.getFullYear(), this.current.getMonth(), day);
   }
 
   // Mal: febrero lo esta dando con 31 dias
   public daysInMonth() : number {
-    return new Date(this.year, this.month, 0).getDate();
+    return new Date(this.current.getFullYear(), this.current.getMonth(), 0).getDate();
   }
 
   public prevMonth() {
+    let year = this.current.getFullYear();
+    let month = this.current.getMonth();
+    let day = this.current.getDate();
     if(this.normalView){
-      this.month = this.month - 1 == 0 ? 12 : this.month-1;
-      this.year = this.month == 12 ? this.year - 1 : this.year; 
+      month = month - 1 == 0 ? 12 : month-1;
+      year = month == 12 ? year - 1 : year; 
     }
-    else this.year -= 16;
+    else year-=16;
 
-    this.current.setFullYear(this.year);
-    this.current.setMonth(this.month);
+    this.current = new Date(year, month, day);
   }
 
   public nextMonth() {
-    if(this.normalView){
-      this.month = this.month + 1 == 13 ? 1 : this.month+1;
-      this.year = this.month == 1 ? this.year + 1 : this.year; 
-    }
-    else this.year += 16;
+    let year = this.current.getFullYear();
+    let month = this.current.getMonth();
+    let day = this.current.getDate();
 
-    this.current.setFullYear(this.year);
-    this.current.setMonth(this.month);
+    if(this.normalView){
+      month = month + 1 == 13 ? 1 : month+1;
+      year = month == 1 ? year + 1 : year; 
+    }
+    else year += 16;
+
+    this.current = new Date(year, month, day);
   }
 }

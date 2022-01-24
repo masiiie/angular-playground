@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
-import { Subscription, TimeoutError, timer } from 'rxjs';
-import { map, share } from "rxjs/operators";
 import { OnDestroy } from '@angular/core';
+
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'lib-clock',
@@ -24,10 +23,17 @@ export class ClockComponent implements OnInit, OnDestroy {
   countdownHours = 0;
   countdownMinutes = 0;
   countdownSeconds = 5;
-  countDownInterval:any;
-  countDownRunning = false;
+  countdownInterval:any;
+  countdownRunning = false;
+  countdownNormalMode = true;
 
-  constructor() {
+  countdownForm = this.formBuilder.group({
+    hours: 0,
+    minutes: 0,
+    seconds: 0
+  });
+
+  constructor(private formBuilder: FormBuilder) {
     // Ejecuta el metodo en el intervalo dado
     this.intervalId = setInterval(() => {
       this.time = new Date();
@@ -50,9 +56,9 @@ export class ClockComponent implements OnInit, OnDestroy {
     clearInterval(this.intervalId);
   }
 
-  startCountdown(){
-    if(this.countDownRunning){
-      this.countDownInterval = setInterval(()=>{
+  startcountdown(){
+    if(this.countdownRunning){
+      this.countdownInterval = setInterval(()=>{
         this.countdownSeconds-=1;
         if(this.countdownSeconds<0){
           this.countdownSeconds = 60;
@@ -60,27 +66,27 @@ export class ClockComponent implements OnInit, OnDestroy {
           if(this.countdownMinutes<0){
             this.countdownMinutes=60;
             this.countdownHours-=1;
-            if(this.countdownHours<0) this.stopCountdown();
+            if(this.countdownHours<0) this.stopcountdown();
           }
         }
       }, 1000);
     }
-    this.countDownRunning = true;
+    this.countdownRunning = true;
   }
 
-  setCountdown(hours:number, minutes:number, seconds:number){
+  setcountdown(hours:number, minutes:number, seconds:number){
     this.countdownHours=hours;
     this.countdownMinutes=minutes;
     this.countdownSeconds=seconds;
   }
 
-  stopCountdown(){
+  stopcountdown(){
     this.countdownHours = 0;
     this.countdownMinutes = 0;
     this.countdownSeconds = 0;
 
-    clearInterval(this.countDownInterval);
-    this.countDownRunning = false;
+    clearInterval(this.countdownInterval);
+    this.countdownRunning = false;
   }
 
   startCrono(){

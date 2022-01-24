@@ -7,12 +7,15 @@
     <div *ngIf='show=="clock"'>
         <h1>{{ time | date: 'hh:mm:ss a' }}</h1>
     </div>
-    <div >
-        <h1>{{ cronoHours }} : {{ cronoMinutes }} : {{ cronoSeconds }}</h1>
+    <div class="crono">
+        <h1><span *ngIf='cronoHours<10'>0</span>{{ cronoHours }}<span class="foot">h</span> : 
+            <span *ngIf='cronoMinutes<10'>0</span>{{ cronoMinutes }}<span class="foot">m</span> : 
+            <span *ngIf='cronoSeconds<10'>0</span>{{ cronoSeconds }}<span class="foot">s</span> : 
+            <span *ngIf='cronoMiliseconds<10'>0</span>{{ cronoMiliseconds }}<span class="foot">ms</span></h1>
         <div class="cronoControls">
-            <button>Start</button>
-            <button>Pause</button>
-            <button>Stop</button>
+            <button (click)="startCrono()">Start</button>
+            <button (click)="pauseCrono()">Pause</button>
+            <button (click)="stopCrono()">Stop</button>
         </div>
     </div>
 </div>

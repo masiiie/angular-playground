@@ -9,6 +9,12 @@
     font-weight: lighter;
 }
 
+span.foot {
+    font-size: 40%;
+    font-weight: lighter;
+    margin-left: 2%;
+}
+
 .cronoControls button{
     border: none;
     padding: 5px;

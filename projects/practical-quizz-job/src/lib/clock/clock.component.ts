@@ -17,14 +17,15 @@ export class ClockComponent implements OnInit, OnDestroy {
   cronoHours = 0;
   cronoMinutes = 0;
   cronoSeconds = 0;
-  cronoInterval;
+  cronoMiliseconds = 0;
+  cronoInterval:any;
+  cronoRunning = false;
 
   constructor() {
     // Ejecuta el metodo en el intervalo dado
     this.intervalId = setInterval(() => {
       this.time = new Date();
-    }, 1000);
-    this.cronoInterval = 0;
+    }, 1);
   }
 
   ngOnInit() {
@@ -35,22 +36,30 @@ export class ClockComponent implements OnInit, OnDestroy {
   }
 
   startCrono(){
-    this.cronoInterval = setInterval(()=>{
-      this.cronoSeconds+=1;
-      if(this.cronoSeconds == 60){
-        this.cronoSeconds = 0;
-        this.cronoMinutes+=1;
-
-        if(this.cronoMinutes==60){
-          this.cronoMinutes=0;
-          this.cronoHours+=1;
+    if(!this.cronoRunning){
+      this.cronoInterval = setInterval(()=>{
+        this.cronoMiliseconds+=1;
+        if(this.cronoMiliseconds==100){
+          this.cronoMiliseconds = 0;
+          this.cronoSeconds+=1;
+          if(this.cronoSeconds == 60){
+            this.cronoSeconds = 0;
+            this.cronoMinutes+=1;
+  
+            if(this.cronoMinutes==60){
+              this.cronoMinutes=0;
+              this.cronoHours+=1;
+            }
+          }
         }
-      }
-    });
+      });
+      this.cronoRunning = true;
+    }
   }
 
   pauseCrono(){
     clearInterval(this.cronoInterval);
+    this.cronoRunning = false;
   }
 
   stopCrono() {
@@ -58,5 +67,6 @@ export class ClockComponent implements OnInit, OnDestroy {
     this.cronoHours = 0;
     this.cronoMinutes = 0;
     this.cronoSeconds = 0;
+    this.cronoMiliseconds = 0;
   }
 }

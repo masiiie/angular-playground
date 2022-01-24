@@ -11,7 +11,7 @@ input[type=number]
 }
 
 .countdownForm input {
-  width: 13%;
+  width: 3%;
   font-size: 170%;
   text-align: center;
   border: 1px solid #eee;
@@ -21,31 +21,30 @@ input[type=number]
   outline: 0;
 }
 
-.timeSet{
-    margin: 2%;
-    width: 25%;
+.countdownForm .foot{
+  font-size: 80% !important;
 }
 
-.options span, .cronoControls button{
-    margin-right: 2%;
+.cronoControls button{
+    margin-right: 10px;
     font-size: smaller;
     font-weight: lighter;
-}
-
-.countdownForm .foot{
-    font-size: 80% !important;
 }
 
 span.foot {
     font-size: 40%;
     font-weight: lighter;
-    margin-left: 2%;
+    margin-left: 1px;
 }
 
+.timeSet h1{
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
+}
 
 .cronoControls button, .options button, #submitCountdownForm{
     border: none;
-    padding: 5% 6% 5% 0px;
+    padding: 10px 12px 10px 0px;
     text-decoration: none;
     display: inline-block; 
     cursor: pointer;
@@ -53,9 +52,7 @@ span.foot {
     background-color: transparent;
 }
 
-
-
-.options span:hover, .cronoControls button:hover, .options button:hover, #submitCountdownForm:hover{
+.cronoControls button:hover, .options button:hover, #submitCountdownForm:hover{
     cursor: pointer;
     color: #a34caf; 
 }

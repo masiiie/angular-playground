@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "journalism-front-end": {
+    "practical-quizz": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:application": {
@@ -18,7 +18,7 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "preserveSymlinks": true,
-            "outputPath": "dist/journalism-front-end",
+            "outputPath": "dist/practical-quizz",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -69,10 +69,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "journalism-front-end:build:production"
+              "browserTarget": "practical-quizz:build:production"
             },
             "development": {
-              "browserTarget": "journalism-front-end:build:development"
+              "browserTarget": "practical-quizz:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -80,7 +80,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "journalism-front-end:build"
+            "browserTarget": "practical-quizz:build"
           }
         },
         "test": {
@@ -134,5 +134,5 @@
       }
     }
   },
-  "defaultProject": "journalism-front-end"
+  "defaultProject": "practical-quizz"
 }

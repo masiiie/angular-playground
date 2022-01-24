@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OnDestroy } from '@angular/core';
-
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'lib-clock',
@@ -28,9 +27,9 @@ export class ClockComponent implements OnInit, OnDestroy {
   countdownNormalMode = true;
 
   countdownForm = this.formBuilder.group({
-    hours: 0,
-    minutes: 0,
-    seconds: 0
+    hours: [0, [Validators.min(0)]],
+    minutes: [0, [Validators.min(0), Validators.max(59)]],
+    seconds: [0, [Validators.min(0), Validators.max(59)]]
   });
 
   constructor(private formBuilder: FormBuilder) {
@@ -47,8 +46,24 @@ export class ClockComponent implements OnInit, OnDestroy {
     this.restartAll();
   }
 
+  onSubmit(): void {
+    let v1 = this.countdownForm.get('hours');
+    let v2 = this.countdownForm.get('minutes');
+    let v3 = this.countdownForm.get('seconds');
+    this.countdownHours = v1?.valid && v1.value!=null ? v1.value : 0;
+    this.countdownMinutes = v2?.valid && v2.value!=null ? v2.value : 0;
+    this.countdownSeconds = v3?.valid && v3.value!=null ? v3.value : 0;
+    this.countdownForm.reset();
+
+    this.countdownNormalMode = true;
+  }
+
   changeMode(mode:string){
     this.show = mode;
+  }
+
+  setTimeCountdown(){
+    this.countdownNormalMode = false;
   }
 
   restartAll(){
@@ -56,37 +71,41 @@ export class ClockComponent implements OnInit, OnDestroy {
     clearInterval(this.intervalId);
   }
 
-  startcountdown(){
-    if(this.countdownRunning){
-      this.countdownInterval = setInterval(()=>{
-        this.countdownSeconds-=1;
-        if(this.countdownSeconds<0){
-          this.countdownSeconds = 60;
-          this.countdownMinutes-=1;
-          if(this.countdownMinutes<0){
-            this.countdownMinutes=60;
-            this.countdownHours-=1;
-            if(this.countdownHours<0) this.stopcountdown();
-          }
+  startCountdown(){
+    let action = () => {
+      this.countdownSeconds-=1;
+      if(this.countdownSeconds<0){
+        this.countdownSeconds = 59;
+        this.countdownMinutes-=1;
+        if(this.countdownMinutes<0){
+          this.countdownMinutes=59;
+          this.countdownHours-=1;
+          if(this.countdownHours<0){
+            this.stopCountdown();
+            window.alert('Countdown finished!');
+          } 
         }
-      }, 1000);
+      }
+    };
+    if(!this.countdownRunning){
+      action();
+      this.countdownInterval = setInterval(action, 1000);
+      this.countdownRunning = true;
     }
-    this.countdownRunning = true;
   }
 
-  setcountdown(hours:number, minutes:number, seconds:number){
-    this.countdownHours=hours;
-    this.countdownMinutes=minutes;
-    this.countdownSeconds=seconds;
+  pauseCountdown(){
+    if(this.countdownRunning){
+      clearInterval(this.countdownInterval);
+      this.countdownRunning = false;
+    }
   }
 
-  stopcountdown(){
+  stopCountdown(){
+    this.pauseCountdown();
     this.countdownHours = 0;
     this.countdownMinutes = 0;
     this.countdownSeconds = 0;
-
-    clearInterval(this.countdownInterval);
-    this.countdownRunning = false;
   }
 
   startCrono(){
@@ -112,8 +131,10 @@ export class ClockComponent implements OnInit, OnDestroy {
   }
 
   pauseCrono(){
-    clearInterval(this.cronoInterval);
-    this.cronoRunning = false;
+    if(this.cronoRunning){
+      clearInterval(this.cronoInterval);
+      this.cronoRunning = false;
+    }
   }
 
   stopCrono() {

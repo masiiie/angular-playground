@@ -1,3 +1,26 @@
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button
+{
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number]
+{
+  -moz-appearance: textfield;
+}
+
+.countdownForm input {
+  width: 13%;
+  font-size: 170%;
+  text-align: center;
+  border: 1px solid #eee;
+}
+
+.countdownForm input:focus {
+  outline: 0;
+}
+
 .timeSet{
     margin: 2%;
     width: 25%;
@@ -9,24 +32,30 @@
     font-weight: lighter;
 }
 
+.countdownForm .foot{
+    font-size: 80% !important;
+}
+
 span.foot {
     font-size: 40%;
     font-weight: lighter;
     margin-left: 2%;
 }
 
-.cronoControls button, .options button{
+
+.cronoControls button, .options button, #submitCountdownForm{
     border: none;
-    padding: 5px;
+    padding: 5% 6% 5% 0px;
     text-decoration: none;
     display: inline-block; 
-    margin: 4px 2px;
     cursor: pointer;
     font-size: small;
     background-color: transparent;
 }
 
-.options span:hover, .cronoControls button:hover, .options button:hover{
+
+
+.options span:hover, .cronoControls button:hover, .options button:hover, #submitCountdownForm:hover{
     cursor: pointer;
     color: #a34caf; 
 }

@@ -2,12 +2,12 @@
     <div class="options">
         <button (click)="changeMode('clock')">Clock</button>
         <button (click)="changeMode('crono')">Crono</button>
-        <button (click)="changeMode('countdown')">countdown</button>
+        <button (click)="changeMode('countdown')">Countdown</button>
     </div>
     <div *ngIf='show=="clock"'>
         <h1>{{ time | date: 'hh:mm:ss a' }}</h1>
     </div>
-    <div>
+    <div *ngIf='show=="crono"'>
         <h1><span *ngIf='cronoHours<10'>0</span>{{ cronoHours }}<span class="foot">h</span> : 
             <span *ngIf='cronoMinutes<10'>0</span>{{ cronoMinutes }}<span class="foot">m</span> : 
             <span *ngIf='cronoSeconds<10'>0</span>{{ cronoSeconds }}<span class="foot">s</span> : 
@@ -18,18 +18,26 @@
             <button (click)="stopCrono()">Reset</button>
         </div>
     </div>
-    <div>
-        <form [formGroup]="countdownForm">
-            <button class="button" type="submit">Purchase</button>  
+    <div *ngIf='show=="countdown"'>
+        <form *ngIf='!countdownNormalMode' class="countdownForm" [formGroup]="countdownForm" (ngSubmit)="onSubmit()">
+            <input id="hours" type="number" min="0" formControlName="hours"><span class="foot">h</span> : 
+            <input id="minutes" type="number" min="0" max="59" formControlName="minutes"><span class="foot">m</span> : 
+            <input id="seconds" type="number" min="0" max="59" formControlName="seconds"><span class="foot">s</span>
+            <br>
+            <button id="submitCountdownForm" type="submit">Set</button>  
         </form>
-        <h1 *ngIf='countdownNormalMode'>
-            <span *ngIf='countdownHours<10'>0</span>{{ countdownHours }}<span class="foot">h</span> : 
-            <span *ngIf='countdownMinutes<10'>0</span>{{ countdownMinutes }}<span class="foot">m</span> : 
-            <span *ngIf='countdownSeconds<10'>0</span>{{ countdownSeconds }}<span class="foot">s</span>
-        </h1>
-        <div class="cronoControls">
-            <button (click)="startcountdown()">Start</button>
-            <button (click)="stopcountdown()">Stop</button>
+        <div *ngIf='countdownNormalMode'>
+            <h1>
+                <span *ngIf='countdownHours<10'>0</span>{{ countdownHours }}<span class="foot">h</span> : 
+                <span *ngIf='countdownMinutes<10'>0</span>{{ countdownMinutes }}<span class="foot">m</span> : 
+                <span *ngIf='countdownSeconds<10'>0</span>{{ countdownSeconds }}<span class="foot">s</span>
+            </h1>
+            <div class="cronoControls">
+                <button (click)="startCountdown()">Start</button>
+                <button (click)="pauseCountdown()">Pause</button>
+                <button (click)="stopCountdown()">Reset</button>
+                <button (click)="setTimeCountdown()">Set-time</button>
+            </div>
         </div>
     </div>
 </div>

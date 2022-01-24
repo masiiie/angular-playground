@@ -1,5 +1,10 @@
 # angular-workspace
 
+Contains a simple Angular-library with the next widgets:
+- [x] Clock
+- [x] Timer, crono, countdown
+- [ ] Wizard 
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.4.
 
 ## Development server

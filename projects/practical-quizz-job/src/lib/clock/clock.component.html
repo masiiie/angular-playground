@@ -1,13 +1,13 @@
 <div class="timeSet">
     <div class="options">
-        <span *ngIf='show!="clock"'>Clock</span>
-        <span>Crono</span>
-        <span>Clock</span>
+        <button (click)="changeMode('clock')">Clock</button>
+        <button (click)="changeMode('crono')">Crono</button>
+        <button (click)="changeMode('countdown')">Countdown</button>
     </div>
     <div *ngIf='show=="clock"'>
         <h1>{{ time | date: 'hh:mm:ss a' }}</h1>
     </div>
-    <div class="crono">
+    <div>
         <h1><span *ngIf='cronoHours<10'>0</span>{{ cronoHours }}<span class="foot">h</span> : 
             <span *ngIf='cronoMinutes<10'>0</span>{{ cronoMinutes }}<span class="foot">m</span> : 
             <span *ngIf='cronoSeconds<10'>0</span>{{ cronoSeconds }}<span class="foot">s</span> : 
@@ -16,6 +16,17 @@
             <button (click)="startCrono()">Start</button>
             <button (click)="pauseCrono()">Pause</button>
             <button (click)="stopCrono()">Stop</button>
+        </div>
+    </div>
+    <div>
+        <h1>
+            <span *ngIf='countdownHours<10'>0</span>{{ countdownHours }}<span class="foot">h</span> : 
+            <span *ngIf='countdownMinutes<10'>0</span>{{ countdownMinutes }}<span class="foot">m</span> : 
+            <span *ngIf='countdownSeconds<10'>0</span>{{ countdownSeconds }}<span class="foot">s</span>
+        </h1>
+        <div class="cronoControls">
+            <button (click)="startCountdown()">Start</button>
+            <button (click)="stopCountdown()">Stop</button>
         </div>
     </div>
 </div>

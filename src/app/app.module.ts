@@ -3,7 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PracticalQuizzJobModule } from 'dist/practical-quizz-job'
+import { PracticalQuizzJobModule } from 'dist/practical-quizz-job';
+
 
 @NgModule({
   declarations: [

@@ -1,1 +1,18 @@
-<div>{{ time | date: 'hh:mm:ss a' }}</div>
+<div class="timeSet">
+    <div class="options">
+        <span *ngIf='show!="clock"'>Clock</span>
+        <span>Crono</span>
+        <span>Clock</span>
+    </div>
+    <div *ngIf='show=="clock"'>
+        <h1>{{ time | date: 'hh:mm:ss a' }}</h1>
+    </div>
+    <div >
+        <h1>{{ cronoHours }} : {{ cronoMinutes }} : {{ cronoSeconds }}</h1>
+        <div class="cronoControls">
+            <button>Start</button>
+            <button>Pause</button>
+            <button>Stop</button>
+        </div>
+    </div>
+</div>

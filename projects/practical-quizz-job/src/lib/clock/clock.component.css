@@ -1,0 +1,26 @@
+.timeSet{
+    margin: 2%;
+    width: 25%;
+}
+
+.options span, .cronoControls button{
+    margin-right: 2%;
+    font-size: smaller;
+    font-weight: lighter;
+}
+
+.cronoControls button{
+    border: none;
+    padding: 5px;
+    text-decoration: none;
+    display: inline-block; 
+    margin: 4px 2px;
+    cursor: pointer;
+    font-size: small;
+    background-color: transparent;
+}
+
+.options span:hover, .cronoControls button:hover{
+    cursor: pointer;
+    color: #a34caf; 
+}

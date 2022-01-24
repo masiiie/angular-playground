@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-//import { } from 'dist/practical-quizz-job'
+import { PracticalQuizzJobModule } from 'dist/practical-quizz-job'
 
 @NgModule({
   declarations: [
@@ -11,7 +11,8 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule, 
+    PracticalQuizzJobModule
   ],
   providers: [],
   bootstrap: [AppComponent]

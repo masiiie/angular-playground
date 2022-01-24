@@ -1,15 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { CalendarComponent } from './calendar/calendar.component'
+import { CalendarComponent } from './calendar/calendar.component';
+import { ClockComponent } from './clock/clock.component'
 
 
 
 @NgModule({
-  declarations: [CalendarComponent],
+  declarations: [CalendarComponent, ClockComponent],
   imports: [
     CommonModule
   ],
-  exports: [CalendarComponent]
+  exports: [CalendarComponent, ClockComponent]
 })
 export class PracticalQuizzJobModule { }

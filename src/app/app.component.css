@@ -1,0 +1,15 @@
+.components{
+    display: inline-block;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.name-intro{
+    text-align: center;
+    font-size: 200%;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-style: italic;
+    font-weight: 5px;
+    color: #a34caf;
+    text-shadow: 2px 2px 4px aqua;
+}
